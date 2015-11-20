@@ -1,5 +1,6 @@
 class ConcertsController < ApplicationController
   before_action :set_concert, only: [:edit, :update, :destroy, :show]
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
 
   def index
     @concerts_today = Concert.concerts_today(8)
