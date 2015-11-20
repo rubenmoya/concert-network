@@ -1,0 +1,31 @@
+- if @concert.errors.any?
+  #error_explanation
+    %b
+      = pluralize(@concert.errors.count, "error")
+      prohibited this concert from being saved:
+    %ul
+      - @concert.errors.full_messages.each do |msg|
+        %li= msg
+
+= form_for @concert do |f|
+  %fieldset
+    =f.label :band
+    =f.text_field :band
+  %fieldset
+    =f.label :venue
+    =f.text_field :venue
+  %fieldset
+    =f.label :city
+    =f.text_field :city
+  %fieldset
+    =f.label :date
+    =f.datetime_local_field :date
+  %fieldset
+    =f.label :price
+    =f.number_field :price
+  %fieldset
+    =f.label :description
+    =f.text_area :description
+
+  %fieldset
+    =f.submit

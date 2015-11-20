@@ -1,4 +1,7 @@
 class Concert < ActiveRecord::Base
+  validates :band, presence: true
+  validates :band, length: { maximum: 40 }
+
   validates :venue, presence: true
   validates :venue, length: { maximum: 40 }
 
