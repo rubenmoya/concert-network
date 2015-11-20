@@ -8,3 +8,37 @@
 
 =link_to "Edit", edit_concert_path(@concert)
 =link_to "Delete", concert_path(@concert), method: :delete, data: { confirm: "Are you sure?" }
+
+%hr/
+
+%h3
+  =pluralize(@concert.comments.persisted.count, "Comment")
+
+%hr/
+- if @concert.comments.any?
+  - @concert.comments.persisted.each do |comment|
+    .comment-body
+      = comment.body
+    %i.comment-time
+      \-
+      = time_ago_in_words(comment.created_at)
+      ago by #{comment.user.email}
+    %hr/
+- else
+  There are no comments to show.
+
+= form_for [@concert, @comment ] do |f|
+  - if @comment.errors.any?
+    .alert.alert-danger
+      %b
+        = pluralize(@comment.errors.count, "error")
+        prohibited this concert from being saved:
+        %ul
+          - @comment.errors.full_messages.each do |msg|
+            %li
+              = msg
+  %fieldset
+    = f.label :body, 'New comment'
+    = f.text_area :body, class: 'form-control', placeholder: 'Your comment'
+  %fieldset
+    = f.submit "Add comment", class: 'btn btn-primary pull-right'

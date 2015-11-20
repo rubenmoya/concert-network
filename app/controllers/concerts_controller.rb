@@ -7,6 +7,10 @@ class ConcertsController < ApplicationController
     @concerts_later = Concert.concerts_later(4)
   end
 
+  def show
+    @comment = @concert.comments.build
+  end
+
   def new
     @concert = Concert.new
   end

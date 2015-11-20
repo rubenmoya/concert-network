@@ -1,6 +1,7 @@
 class Concert < ActiveRecord::Base
   belongs_to :user
-  
+  has_many :comments
+
   validates :band, presence: true
   validates :band, length: { maximum: 40 }
 
