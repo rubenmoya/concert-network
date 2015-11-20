@@ -1,6 +1,6 @@
 class ConcertsController < ApplicationController
-  before_action :set_concert, only: [:edit, :update, :destroy, :show]
-  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_concert, only: [:show, :edit, :update, :destroy]
 
   def index
     @concerts_today = Concert.concerts_today(8)
@@ -12,7 +12,7 @@ class ConcertsController < ApplicationController
   end
 
   def create
-    @concert = Concert.new(concert_params)
+    @concert = current_user.concerts.build concert_params
 
     if @concert.save
       redirect_to @concert, flash: { success: "Concert has been saved successfully."}
@@ -22,13 +22,20 @@ class ConcertsController < ApplicationController
   end
 
   def edit
+    if @concert.user != current_user
+      redirect_to root_path, :flash => { :danger => "You can only edit your own concerts." }
+    end
   end
 
   def update
-    if @concert.update(concert_params)
-      redirect_to @concert, flash: { success: "Concert has been updated successfully."}
+    if @concert.user != current_user
+      redirect_to root_path, :flash => { :danger => "You can only edit your own concerts." }
     else
-      render 'edit', flash: { success: "Concert has not been updated."}
+      if @concert.update(concert_params)
+        redirect_to @concert, flash: { success: "Concert has been updated successfully."}
+      else
+        render 'edit', flash: { success: "Concert has not been updated."}
+      end
     end
   end
 
