@@ -1,11 +1,12 @@
-%h1 Check the concerts for today!
+%section.concerts-today
+  %h1.home-title Check today's concerts!
+  .concerts-list
+    - @concerts_today.each do |c|
+      = render 'concert_loop', concert: c
 
-%section.concerts-list
-  - @concerts_today.each do |c|
-    = render 'concert_loop', concert: c
+%section.concerts-later
+  %h1.home-title Later this month
 
-%h1 And later this month...
-
-%section.concerts-list
-  - @concerts_later.each do |c|
-    = render 'concert_loop', concert: c
+  .concerts-list
+    - @concerts_later.each do |c|
+      = render 'concert_loop', concert: c

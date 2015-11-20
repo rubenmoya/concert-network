@@ -1,16 +1,14 @@
 %article.concert
-  =link_to concert_path(concert) do
-    =image_tag concert.poster.url(:thumb)
   .concert-body
     %h2
       =link_to concert_path(concert) do
         =concert.band
       %span.pull-right= number_to_currency(concert.price, unit: "€", separator: ",")
+    =link_to concert_path(concert) do
+      =image_tag concert.poster.url(:thumb)
     %p
-      %i.fa.fa-map-pin
-      =concert.venue
-      \-
-      =concert.city
+      %i.fa.fa-map-marker.fa-fw
+      = "#{concert.venue}, #{concert.city}"
     %p
-      %i.fa.fa-calendar-o
+      %i.fa.fa-calendar-o.fa-fw
       = concert.date
