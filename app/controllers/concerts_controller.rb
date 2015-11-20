@@ -2,6 +2,8 @@ class ConcertsController < ApplicationController
   before_action :set_concert, only: [:edit, :update, :destroy, :show]
 
   def index
+    @concerts_today = Concert.concerts_today(8)
+    @concerts_later = Concert.concerts_later(4)
   end
 
   def new

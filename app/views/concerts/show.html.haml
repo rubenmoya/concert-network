@@ -5,3 +5,6 @@
   %li= @concert.date
   %li= @concert.price
   %li= @concert.description
+
+=link_to "Edit", edit_concert_path(@concert)
+=link_to "Delete", concert_path(@concert), method: :delete, data: { confirm: "Are you sure?" }

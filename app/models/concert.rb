@@ -15,4 +15,12 @@ class Concert < ActiveRecord::Base
 
   validates :description, presence: true
   validates :description, length: { maximum: 300 }
+
+  def self.concerts_today num=3
+    where('date BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).limit(num)
+  end
+
+  def self.concerts_later num=3
+    where('date BETWEEN ? AND ?', DateTime.now.end_of_day, DateTime.now + 1.month).limit(num)
+  end
 end

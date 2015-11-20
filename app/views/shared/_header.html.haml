@@ -1,2 +1,11 @@
-%header.header
-  Test
+%header.header.container
+  %h1.logo
+    =link_to root_path do
+      %i.fa.fa-music
+      Concert Network
+
+  %nav.nav
+    %ul
+      %li=link_to "Concerts", root_path, class: "nav-item"
+      %li=link_to "Search", root_path, class: "nav-item"
+      %li=link_to "New concert", new_concert_path, class: "nav-item btn btn--blue"

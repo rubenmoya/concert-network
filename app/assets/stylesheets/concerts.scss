@@ -1,3 +1,17 @@
-// Place all the styles related to the concerts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.concerts-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.concert {
+  background: #FFF;
+  box-shadow: 2px 6px 5px -4px rgba(0, 0, 0, .3);
+  min-width: 320px;
+
+  &-body {
+    margin: 0 1.6rem;
+  }
+}

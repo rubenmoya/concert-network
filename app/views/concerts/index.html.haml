@@ -1,1 +1,39 @@
-%h1 Hello world
+%h1 What's happening today?
+
+%section.concerts-list
+  - @concerts_today.each do |concert|
+    %article.concert
+      .concert-body
+        %h2
+          =link_to concert_path(concert) do
+            =concert.band
+          %span.pull-right= number_to_currency(concert.price, unit: "€", separator: ",")
+        %p
+          %i.fa.fa-map-pin
+          =concert.venue
+          \-
+          =concert.city
+        %p
+          %i.fa.fa-calendar-o
+          = concert.date
+        %p= concert.description
+
+%h1 And later this month...
+  
+%section.concerts-list
+  - @concerts_later.each do |concert|
+    %article.concert
+      .concert-body
+        %h2
+          =link_to concert_path(concert) do
+            =concert.band
+          %span.pull-right= number_to_currency(concert.price, unit: "€", separator: ",")
+        %p
+          %i.fa.fa-map-pin
+          =concert.venue
+          \-
+          =concert.city
+        %p
+          %i.fa.fa-calendar-o
+          = concert.date
+        %p= concert.description

@@ -1,6 +1,49 @@
 .header {
   height: 80px;
   background-color: #3b4044;
-  padding: 1em;
-  padding: 1em calc(50% - 450px);
+  overflow: hidden;
+}
+
+.logo {
+  line-height: 2rem;
+  font-weight: lighter;
+  margin: .4em;
+  font-size: 1.2rem;
+  float: left;
+  text-transform: uppercase;
+
+  i {
+    color: #3AC4FF;
+    font-style: italic;
+    margin-right: .4em;
+  }
+
+  a {
+    color: #D2D2D2;
+    text-decoration: none;
+  }
+}
+
+.nav {
+  float: right;
+  margin: .9rem 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    float: left;
+  }
+
+  .nav-item {
+    color: #D2D2D2;
+    font-family: "Raleway";
+    font-size: .8rem;
+    padding: 10px 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
 }
