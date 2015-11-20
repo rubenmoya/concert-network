@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120082134) do
+ActiveRecord::Schema.define(version: 20151120083031) do
 
   create_table "concerts", force: :cascade do |t|
     t.string   "band"
     t.string   "venue"
     t.string   "city"
     t.datetime "date"
-    t.integer  "price"
+    t.float    "price"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
