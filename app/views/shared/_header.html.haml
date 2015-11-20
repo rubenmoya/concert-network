@@ -7,7 +7,7 @@
   %nav.nav
     %ul
       %li=link_to "Concerts", root_path, class: "nav-item"
-      %li=link_to "Search", root_path, class: "nav-item"
+      %li=link_to "Search", search_path, class: "nav-item"
 
       - if user_signed_in?
         %li=link_to "Profile", edit_user_registration_path, class: "nav-item"

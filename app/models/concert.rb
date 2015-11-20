@@ -26,4 +26,8 @@ class Concert < ActiveRecord::Base
   def self.concerts_later num=3
     where('date BETWEEN ? AND ?', DateTime.now.end_of_day, DateTime.now + 1.month).limit(num)
   end
+
+  def self.search_by_price price
+    where('price <= ?', price)
+  end
 end

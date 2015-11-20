@@ -1,0 +1,10 @@
+%h1 Search concerts
+
+%form{method: "POST", action: "/search"}
+  %input{type: "number", name: "price", placeholder: "Maximum price..."}
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  %input{type: "submit"}
+
+- if @concerts.present?
+  - @concerts.each do |c|
+    =c.band

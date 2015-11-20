@@ -47,10 +47,17 @@ class ConcertsController < ApplicationController
     @concert.destroy
     redirect_to root_path, flash: { success: "Concert has been deleted successfully."}
   end
+
+  def search
+    @concerts = Concert.search_by_price(params[:price])
+
+    render 'search'
+  end
+
   private
 
   def set_concert
-    @concert = Concert.find(params[:id])
+    @concert = Concert.search_by_price(params[:id])
   end
 
   def concert_params
