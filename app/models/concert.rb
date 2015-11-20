@@ -19,6 +19,9 @@ class Concert < ActiveRecord::Base
   validates :description, presence: true
   validates :description, length: { maximum: 300 }
 
+  has_attached_file :poster, styles: { medium: "420x470>", thumb: "320x370>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
+
   def self.concerts_today num=3
     where('date BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).limit(num)
   end
