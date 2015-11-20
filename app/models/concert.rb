@@ -30,4 +30,8 @@ class Concert < ActiveRecord::Base
   def self.search_by_price price
     where('price <= ?', price)
   end
+
+  def self.popular_concerts
+    all.order('comments_count DESC')
+  end
 end

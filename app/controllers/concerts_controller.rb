@@ -54,10 +54,14 @@ class ConcertsController < ApplicationController
     render 'search'
   end
 
+  def top_ten
+    @concerts = Concert.popular_concerts
+  end
+
   private
 
   def set_concert
-    @concert = Concert.search_by_price(params[:id])
+    @concert = Concert.find(params[:id])
   end
 
   def concert_params

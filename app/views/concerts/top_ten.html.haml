@@ -1,0 +1,5 @@
+%h1 Top 10 Concerts
+  
+- if @concerts.present?
+  - @concerts.each do |c|
+    =c.band
