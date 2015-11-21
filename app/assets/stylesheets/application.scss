@@ -9,11 +9,12 @@ body {
 }
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
-@import "forms";
 @import "buttons";
-@import "header";
-@import "footer";
+@import "comments";
 @import "concerts";
+@import "footer";
+@import "forms";
+@import "header";
 
 .container {
   padding: 1em;
@@ -22,11 +23,15 @@ body {
 }
 
 .home-title {
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.5rem;
   color: #565656;
-  margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin: 0 0 2rem 0;
+  text-transform: uppercase;
+}
+
+hr {
+  border: 1px solid #E4E4E4;
 }
 
 .left {

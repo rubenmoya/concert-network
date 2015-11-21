@@ -1,45 +1,51 @@
-%h1= @concert.band
-%hr/
-%ul
-  %li= @concert.venue
-  %li= @concert.city
-  %li= @concert.date
-  %li= @concert.price
-  %li= @concert.description
+%section.concert.left
+  .concert-body
+    %h2
+      =link_to concert_path(@concert) do
+        =@concert.band
+      %span.pull-right= number_to_currency(@concert.price, unit: "€", separator: ",")
+    =link_to concert_path(@concert) do
+      =image_tag @concert.poster.url(:thumb)
+    %p
+      %i.fa.fa-map-marker.fa-fw
+      = "#{@concert.venue}, #{@concert.city}"
+    %p
+      %i.fa.fa-calendar-o.fa-fw
+      = @concert.date
 
-=link_to "Edit", edit_concert_path(@concert)
-=link_to "Delete", concert_path(@concert), method: :delete, data: { confirm: "Are you sure?" }
+    %p
+      =link_to "Edit", edit_concert_path(@concert)
+      =link_to "Delete", concert_path(@concert), method: :delete, data: { confirm: "Are you sure?" }
 
-%hr/
+%section.comments.left
+  %h3
+    =pluralize(@concert.comments.persisted.count, "Comment")
 
-%h3
-  =pluralize(@concert.comments.persisted.count, "Comment")
+  %hr/
+  - if @concert.comments.any?
+    - @concert.comments.persisted.each do |comment|
+      .comment-body
+        = comment.body
+      %i.comment-time
+        \-
+        = time_ago_in_words(comment.created_at)
+        ago by #{comment.user.email}
+      %hr/
+  - else
+    There are no comments to show.
 
-%hr/
-- if @concert.comments.any?
-  - @concert.comments.persisted.each do |comment|
-    .comment-body
-      = comment.body
-    %i.comment-time
-      \-
-      = time_ago_in_words(comment.created_at)
-      ago by #{comment.user.email}
-    %hr/
-- else
-  There are no comments to show.
-
-= form_for [@concert, @comment ] do |f|
-  - if @comment.errors.any?
-    .alert.alert-danger
-      %b
-        = pluralize(@comment.errors.count, "error")
-        prohibited this concert from being saved:
-        %ul
-          - @comment.errors.full_messages.each do |msg|
-            %li
-              = msg
-  %fieldset
-    = f.label :body, 'New comment'
-    = f.text_area :body, class: 'form-control', placeholder: 'Your comment'
-  %fieldset
-    = f.submit "Add comment", class: 'btn btn-primary pull-right'
+  = form_for [@concert, @comment ] do |f|
+    - if @comment.errors.any?
+      .alert.alert-danger
+        %b
+          = pluralize(@comment.errors.count, "error")
+          prohibited this concert from being saved:
+          %ul
+            - @comment.errors.full_messages.each do |msg|
+              %li
+                = msg
+    %fieldset
+      = f.label :body, 'New comment'
+      = f.text_area :body, class: 'form-control', placeholder: 'Your comment'
+    %fieldset
+      = f.submit "Add comment", class: 'btn btn--blue btn--block'

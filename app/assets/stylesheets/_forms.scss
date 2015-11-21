@@ -1,7 +1,3 @@
-form {
-  width: 50%;
-}
-
 fieldset {
   border: 0;
   margin: 0 0 1rem 0;
@@ -13,7 +9,7 @@ label {
   margin-bottom: .8rem;
 }
 
-input, textarea {
+input[type="text"], textarea {
   padding: .6rem 1rem;
   border-radius: 3px;
   border: 1px solid #D8D8D8;

@@ -7,10 +7,16 @@
   &--blue {
     border: 1px solid #3AC4FF;
     color: #3AC4FF!important;
+    background: transparent;
 
     &:hover {
       color: #000!important;
       background: #3AC4FF;
     }
+  }
+
+  &--block {
+    width: 100%;
+    padding: .8rem 1rem;
   }
 }
